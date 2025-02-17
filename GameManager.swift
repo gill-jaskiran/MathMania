@@ -39,6 +39,25 @@ class GameManager: ObservableObject {
             gameOver = true
         }
     }
+    
+    func checkGuess(guess: String) {
+        let isOdd = randomNumber % 2 != 0
+        if (guess == "Odd" && isOdd) || (guess == "Even" && !isOdd) {
+            score += 10
+            nextLevel()
+        } else {
+            gameOver = true
+        }
+    }
+
+    private func nextLevel() {
+        if currentLevel < 3 {
+            currentLevel += 1
+            generateQuestion()
+        } else {
+            gameOver = true
+        }
+    }
 
    
 }
