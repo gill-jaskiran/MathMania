@@ -7,10 +7,10 @@
 import SwiftUI
 
 @main
-struct MathManiaApp: App {
+struct GameAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView()
         }
     }
 }
