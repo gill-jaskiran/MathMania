@@ -67,6 +67,12 @@ class GameManager: ObservableObject {
             gameOver = true
         }
     }
-
+    
+    func resetGame() {
+        currentLevel = 1
+        score = 0
+        gameOver = false
+        generateQuestion()
+    }
    
 }
