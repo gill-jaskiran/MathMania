@@ -49,6 +49,15 @@ class GameManager: ObservableObject {
             gameOver = true
         }
     }
+    
+    func checkAnswer(answer: Int) {
+        if answer == correctAnswer {
+            score += 10
+            nextLevel()
+        } else {
+            gameOver = true
+        }
+    }
 
     private func nextLevel() {
         if currentLevel < 3 {
