@@ -1,6 +1,7 @@
 //
 //  GameManager.swift
 //  MathMania
+//  File Created and Edited By Jaskiran Gill 
 //
 //
 
