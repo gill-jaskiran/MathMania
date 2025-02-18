@@ -48,7 +48,34 @@ struct ContentView: View {
                     Text("Play Again")
                      
                 }
-           
+            } else {
+                Text("Level \(gameManager.currentLevel)")
+                Text(gameManager.question)
+
+                if gameManager.currentLevel == 1 {
+                    HStack {
+                        Button(action: { gameManager.checkGuess(guess: "Odd") }) {
+                            Text("Odd")
+                        }
+                        Button(action: { gameManager.checkGuess(guess: "Even") }) {
+                        }
+                        .padding()
+                    }
+                } else {
+                    TextField("Enter your answer", text: $username)
+
+                    Button(action: {
+                        if let answer = Int(username) {
+                            gameManager.checkAnswer(answer: answer)
+                            username = ""
+                        }
+                    }) {
+                        Text("Submit Answer")
+                    }
+
+                }
+
+                Text("Score: \(gameManager.score)")
             }
         }
     }
