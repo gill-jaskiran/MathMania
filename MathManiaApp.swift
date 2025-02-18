@@ -2,6 +2,7 @@
 //  MathManiaApp.swift
 //  MathMania
 //
+// Splash view added by Jaskiran Gill 
 //
 
 import SwiftUI
