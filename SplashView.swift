@@ -39,7 +39,7 @@ struct SplashView: View {
                     .padding(.top, 20)
                 Text("Jaskiran Gill")
                     .font(.title3)
-                Text("Emily Thomas")
+                Text("Elizabeth Thomas")
                     .font(.title3)
                 
                 Spacer()
