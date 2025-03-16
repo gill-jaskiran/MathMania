@@ -110,25 +110,44 @@ struct ContentView: View {
                     }
                     .padding()
                 } else if gameManager.currentLevel == 3 {
-                    HStack {
-                        Button(action: { gameManager.checkPrimeGuess(guess: "Prime") }) {
-                            Text("Prime")
-                                .padding()
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                    VStack {
+                        Button(action: { gameManager.checkPrimeGuess(guess: "Yes Prime") }) {
+                            HStack {
+                                Image(systemName: "checkmark.seal.fill")
+                                    .foregroundColor(.white)
+                                Text("Prime")
+                                    .fontWeight(.bold)
+                            }
+                            .padding()
+                            .frame(width: 180, height: 60)
+                            .background(
+                                LinearGradient(gradient: Gradient(colors: [Color.purple, Color.pink]), startPoint: .leading, endPoint: .trailing)
+                            )
+                            .foregroundColor(.white)
+                            .cornerRadius(15)
+                            .shadow(radius: 5)
                         }
                         .padding()
 
                         Button(action: { gameManager.checkPrimeGuess(guess: "Not Prime") }) {
-                            Text("Not Prime")
-                                .padding()
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                            HStack {
+                                Image(systemName: "xmark.octagon.fill")
+                                    .foregroundColor(.white)
+                                Text("Not Prime")
+                                    .fontWeight(.bold)
+                            }
+                            .padding()
+                            .frame(width: 180, height: 60)
+                            .background(
+                                LinearGradient(gradient: Gradient(colors: [Color.pink, Color.orange]), startPoint: .leading, endPoint: .trailing)
+                            )
+                            .foregroundColor(.white)
+                            .cornerRadius(15)
+                            .shadow(radius: 5)
                         }
                         .padding()
                     }
+                    .padding(.top, 20)
                 }
 
                 Text("Score: \(gameManager.score)")
