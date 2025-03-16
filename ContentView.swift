@@ -90,7 +90,7 @@ struct ContentView: View {
                         }
                         .padding()
                     }
-                } else {
+                } else if gameManager.currentLevel == 2 {
                     TextField("Enter your answer", text: $username)
                         .padding()
                         .keyboardType(.numberPad)
@@ -109,6 +109,26 @@ struct ContentView: View {
                             .cornerRadius(10)
                     }
                     .padding()
+                } else if gameManager.currentLevel == 3 {
+                    HStack {
+                        Button(action: { gameManager.checkPrimeGuess(guess: "Prime") }) {
+                            Text("Prime")
+                                .padding()
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding()
+
+                        Button(action: { gameManager.checkPrimeGuess(guess: "Not Prime") }) {
+                            Text("Not Prime")
+                                .padding()
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding()
+                    }
                 }
 
                 Text("Score: \(gameManager.score)")
