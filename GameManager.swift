@@ -1,6 +1,7 @@
 //
 //  GameManager.swift
 //  MathMania
+//  File Created and Edited By Jaskiran Gill 
 //
 //
 
@@ -31,10 +32,8 @@ class GameManager: ObservableObject {
             correctAnswer = number1 + number2
             question = "What is \(number1) + \(number2)?"
         case 3:
-            number1 = Int.random(in: 20...100)
-            number2 = Int.random(in: 1...number1)
-            correctAnswer = number1 - number2
-            question = "What is \(number1) - \(number2)?"
+            randomNumber = Int.random(in: 2...100)
+            question = "Is \(randomNumber) a Prime number?"
         default:
             gameOver = true
         }
@@ -59,6 +58,26 @@ class GameManager: ObservableObject {
         }
     }
 
+    func checkPrimeGuess(guess: String) {
+        let isPrimeNumber = isPrime(randomNumber)
+        if (guess == "Prime" && isPrimeNumber) || (guess == "Not Prime" && !isPrimeNumber) {
+            score += 10
+            gameOver = true
+        } else {
+            gameOver = true
+        }
+    }
+
+    private func isPrime(_ num: Int) -> Bool {
+        if num < 2 { return false }
+        for i in 2..<num {
+            if num % i == 0 {
+                return false
+            }
+        }
+        return true
+    }
+
     private func nextLevel() {
         if currentLevel < 3 {
             currentLevel += 1
@@ -74,5 +93,5 @@ class GameManager: ObservableObject {
         gameOver = false
         generateQuestion()
     }
-   
+    
 }

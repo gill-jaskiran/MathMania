@@ -1,6 +1,7 @@
 //
 //  SplashView.swift
 //  MathMania
+//  File Created and Implemented by Jaskiran Gill 
 //
 //
 
