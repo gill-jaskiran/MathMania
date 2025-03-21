@@ -2,8 +2,9 @@
 //  Leaderboard.swift
 //  MathMania
 //
-//  Created by Elizabeth Thomas on 2025-02-17.
+//  Created by Elizabeth Thomas on 2025-03-20.
 //
+
 import Foundation
 
 struct LeaderboardItem: Codable, Identifiable {
@@ -35,7 +36,7 @@ class Leaderboard: ObservableObject {
         }
     }
         
-    func addScore(username: String, score: Int) {
+    /* func addScore(username: String, score: Int) {
         let newItem = LeaderboardItem(username: username, score: score)
         leaderboard.append(newItem)
         leaderboard.sort { $0.score>$1.score }
@@ -45,5 +46,12 @@ class Leaderboard: ObservableObject {
         }
 
     saveLeaderboard()
+    } */
+    
+    func addScore(score: Int){
+        let newItem = LeaderboardItem(username: "Current User", score: score)
+        leaderboard.insert(newItem, at: 0)
+        leaderboard = Array(leaderboard.prefix(10))
+        saveLeaderboard()
     }
 }
