@@ -62,7 +62,7 @@ class GameManager: ObservableObject {
         let isPrimeNumber = isPrime(randomNumber)
         if (guess == "Prime" && isPrimeNumber) || (guess == "Not Prime" && !isPrimeNumber) {
             score += 10
-            gameOver = true
+            nextLevel()
         } else {
             gameOver = true
         }
@@ -70,7 +70,10 @@ class GameManager: ObservableObject {
 
     private func isPrime(_ num: Int) -> Bool {
         if num < 2 { return false }
-        for i in 2..<num {
+        if num == 2 { return true }
+        if num % 2 == 0 { return false } 
+
+        for i in stride(from: 3, through: Int(Double(num).squareRoot()), by: 2) {
             if num % i == 0 {
                 return false
             }
@@ -93,5 +96,4 @@ class GameManager: ObservableObject {
         gameOver = false
         generateQuestion()
     }
-    
 }
