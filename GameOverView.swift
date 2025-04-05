@@ -3,6 +3,7 @@
 //  MathMania
 //
 //  Created by Jaskiran Gill on 2025-03-29.
+//  Edited by Elizabeth Thomas on 2025-04-04
 //
 
 import SwiftUI
