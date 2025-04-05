@@ -9,8 +9,7 @@ import SwiftUI
 
 struct LevelView: View {
     @ObservedObject var gameManager: GameManager
-    @State private var username: String = ""
-    
+        
     var body: some View {
         VStack {
             Text("Level \(gameManager.currentLevel)")
@@ -27,7 +26,7 @@ struct LevelView: View {
             }
             // Level 2
             else if gameManager.currentLevel == 2 {
-                Level2View(gameManager: gameManager, username: $username)
+                Level2View(gameManager: gameManager)
             }
             
             // Level 3
@@ -41,10 +40,3 @@ struct LevelView: View {
         }
     }
 }
-
-struct LevelView_Previews: PreviewProvider {
-    static var previews: some View {
-        LevelView(gameManager: GameManager())
-    }
-}
-

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SplashView: View {
-    @State private var isActive = false
+    @State private var isActive = false   
 
     var body: some View {
         if isActive {
@@ -50,7 +50,7 @@ struct SplashView: View {
             .onAppear {
                 
                 // The spash view will only display for 10 seconds
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     withAnimation {
                         isActive = true
                     }

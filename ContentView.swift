@@ -8,13 +8,13 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var gameManager = GameManager()
-    @ObservedObject var leaderboard = Leaderboard()
+    @ObservedObject var recentScores = RecentScores()
     
     var body: some View {
         NavigationStack {
             VStack {
                 if gameManager.gameOver {
-                    GameOverView(gameManager: gameManager, leaderboard: leaderboard)
+                    GameOverView(gameManager: gameManager, recentScores: RecentScores())
                 } else {
                     LevelView(gameManager: gameManager)
                 }

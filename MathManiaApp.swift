@@ -9,7 +9,7 @@
 import SwiftUI
 
 @main
-struct GameAppApp: App {
+struct MathManiaApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView()

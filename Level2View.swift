@@ -9,19 +9,26 @@ import SwiftUI
 
 struct Level2View: View {
     @ObservedObject var gameManager: GameManager
-    @Binding var username: String
+    @State private var userInput: String = ""
     
     var body: some View {
         VStack {
-            TextField("Enter your answer", text: $username)
+            Text("Enter the answer: ")
+                .font(.title2)
+                .padding(.bottom, 10)
+                
+            
+            TextField("Type your answer here", text: $userInput)
                 .padding()
                 .keyboardType(.numberPad)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                
             Button(action: {
-                if let answer = Int(username) {
+                if let answer = Int(userInput) {
                     gameManager.checkAnswer(answer: answer)
-                    username = ""
+                    userInput = ""
+                } else {
+                    print("Invalid input. Please enter a valid number.")
                 }
             }) {
                 Text("Submit Answer")
@@ -30,13 +37,13 @@ struct Level2View: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
-            .padding()
+            .padding(.top, 10)
         }
     }
 }
 
 struct Level2View_Previews: PreviewProvider {
     static var previews: some View {
-        Level2View(gameManager: GameManager(), username: .constant(""))
+        Level2View(gameManager: GameManager())
     }
 }

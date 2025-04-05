@@ -9,58 +9,85 @@ import SwiftUI
 
 struct GameOverView: View {
     @ObservedObject var gameManager: GameManager
-    @ObservedObject var leaderboard: Leaderboard
+    @ObservedObject var recentScores: RecentScores
+    
+    @State private var playerName: String = ""
+    @State private var scoreSubmitted = false
 
-    @State private var username: String = ""
 
     var body: some View {
         VStack {
             Text("Game Over!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-
-            Text("Final Score: \(gameManager.score)")
-                .font(.title)
-                .padding()
+                .font(.title2)
+                .padding(5)
+            
+            Text("Your Score: \(gameManager.score)")
+                .font(.title2)
+                .padding(5)
+            
+            TextField("Enter your name", text: $playerName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .disableAutocorrection(true)
+                .padding(5)
+            
             Button(action: {
-                leaderboard.addScore(score: gameManager.score)
-            }) {
-                Text("Submit Score")
-                    .padding()
-                    .background(Color.green)
+                guard !playerName.isEmpty else {
+                    print("Player name cannot be empty!")
+                    return
+                }
+                recentScores.addScore(username: playerName, score: gameManager.score)
+                scoreSubmitted = true
+            })
+            {
+                Text(scoreSubmitted ? "Submitted": "Submit")
+                    .background(scoreSubmitted ? Color.gray : Color.green)
+                    .padding(5)
                     .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .cornerRadius(5)
             }
-            .padding()
-
             Text("Recent Scores:")
                 .font(.title2)
-                .padding()
-
-            List(leaderboard.leaderboard) { item in
+            
+            
+            List(recentScores.recentScores) { item in
                 HStack {
-                    Text(item.username)
+                    Text("\(item.username)")
+                        .font(.headline)
                     Spacer()
+                    
                     Text("\(item.score) points")
+                        .font(.headline)
+                    Spacer()
+                    
+                    Text(item.timestamp, style: .date)
+                    .font(.caption)                }
+            }
+            HStack(spacing: 20) {
+                NavigationLink(destination: ContentView()) {
+                    Text("Play Again")
+                        .padding(5)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: 100)
+                        .background(Color.green)            .cornerRadius(5)
+                }
+                
+                
+                Button(action: {
+                    UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                    exit(0)
+                }) {
+                    Text("Exit Game")
+                        .padding(5)
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
                 }
             }
-            NavigationLink(destination: ContentView()) {
-                Text("Play Again")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-            .padding()
+            
+            .padding(.top, 10)
+            .navigationTitle("")
         }
-        .padding()
-        .navigationTitle("Leaderboard")
+            
     }
-}
-
-struct GameOverView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameOverView(gameManager: GameManager(), leaderboard: Leaderboard())
-    }
+    
 }
