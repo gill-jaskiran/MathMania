@@ -50,7 +50,7 @@ struct SplashView: View {
             .onAppear {
                 
                 // The spash view will only display for 10 seconds
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                     withAnimation {
                         isActive = true
                     }
